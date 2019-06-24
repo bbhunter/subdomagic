@@ -45,11 +45,15 @@ cd EyeWitness
 cd setup
 ./setup.sh
 
+#aesthetic
+wget https://raw.githubusercontent.com/gelosecurity/subdomagic/master/logo.txt
 clear
 
-wget https://github.com/gelosecurity/subdomagic/blob/master/logo.txt
-cat logo.txt
-rm logo.txt
+mv logo.txt > templogo.txt
+cat templogo.txt
+rm templogo.txt
+
+#complete setup
 echo ""
 echo "[*] Installed snap"
 echo "[*] Installed go"
