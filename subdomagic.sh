@@ -28,7 +28,7 @@ read nmapChoice
 echo -e "[+] Making directory structure..."
 
 # make directory structure
-cd ../output
+cd output
 
 if [ ! -d "$domainName" ]; then
   mkdir $domainName
@@ -42,10 +42,12 @@ echo -e "[+] Running subodmain enumeration...this may take a while..."
 amass enum -src -d $domainName -o $domainName-amass.txt
 
 # run subfinder
+cd /opt/subfinder
 ./subfinder -d $domainName -o $domainName-subfinder.txt
 
 # run massdns
-./scripts/subbrute.py lists/names.txt $domainName | ./bin/massdns -r lists/resolvers.txt -t A -o S -w $domainName-massdns.txt
+cd /opt/massdns/scripts
+./subbrute.py lists/names.txt $domainName | ./bin/massdns -r lists/resolvers.txt -t A -o S -w $domainName-massdns.txt
 
 echo -e "[+] Consolidating subdomain findings..."
 
