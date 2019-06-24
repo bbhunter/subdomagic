@@ -47,15 +47,17 @@ cd setup
 
 clear
 
+wget https://github.com/gelosecurity/subdomagic/blob/master/logo.txt
 cat logo.txt
+rm logo.txt
+echo ""
 echo "[*] Installed snap"
 echo "[*] Installed go"
 echo "[*] Installed amass"
 echo "[*] Installed subfinder"
 echo "[*] Installed massdns"
 echo "[*] Installed EyeWitness"
-
-
+echo""
 echo "Setup complete!"
 
 
