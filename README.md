@@ -8,6 +8,7 @@ This script is intended to speed up and simplify the process of subdomain enumer
 
 
 ### Setup
+1. `git clone https://github.com/gelosecurity/subdomagic` into your `/opt` directory
 1. Navigate into the setup directory
 2. Run the `setup.sh` script
 
