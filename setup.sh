@@ -49,6 +49,8 @@ cd EyeWitness
 cd setup
 ./setup.sh
 
+clear
+
 #complete setup
 echo "subdomagic by gelosecurity.com"
 echo "[*] Installed snap"
