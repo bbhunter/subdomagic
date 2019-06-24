@@ -1,6 +1,6 @@
 subdomagic
 ======
-This script is intended to speed up and simplify the process of subdomain enumeration. In particular, it's looking to:
+This linux script is intended to speed up and simplify the process of subdomain enumeration. In particular, it's looking to:
 
 1. Enumerate subdomains using efficient open source tools (Amass, Subfinder, MassDNS)
 2. Conduct scans for web servers hosted on common ports. (Nmap)
