@@ -1,8 +1,5 @@
 #!/bin/bash
 
-
-
-
 echo "[+] Installing dependencies...."
 
 #update
@@ -47,6 +44,17 @@ git clone https://github.com/FortyNorthSecurity/EyeWitness
 cd EyeWitness
 cd setup
 ./setup.sh
+
+clear
+
+cat logo.txt
+echo "[*] Installed snap"
+echo "[*] Installed go"
+echo "[*] Installed amass"
+echo "[*] Installed subfinder"
+echo "[*] Installed massdns"
+echo "[*] Installed EyeWitness"
+
 
 echo "Setup complete!"
 
