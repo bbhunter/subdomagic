@@ -39,19 +39,20 @@ cd $domainName
 echo -e "[+] Running subodmain enumeration...this may take a while..."
 
 # run amass
-amass enum -src -d $domainName -o /opt/subdomagic/output/$domainName-amass.txt
+amass enum -o $domainName-amass.txt -d $domainName
+mv $domainName-amass.txt /opt/subdomagic/output/$domainName
 
 # run subfinder
 cd /opt/subfinder
-./subfinder -d $domainName -o /opt/subdomagic/output/$domainName-subfinder.txt
+./subfinder -d $domainName -o /opt/subdomagic/output/$domainName/$domainName-subfinder.txt
 
 # run massdns
 cd /opt/massdns/scripts
-python subbrute.py all.txt $domainName | ./bin/massdns -r lists/resolvers.txt -t A -o S -w /opt/subdomagic/output/$domainName-massdns.txt
+python subbrute.py all.txt $domainName | ./bin/massdns -r lists/resolvers.txt -t A -o S -w /opt/subdomagic/output/$domainName/$domainName-massdns.txt
 
 echo -e "[+] Consolidating subdomain findings..."
 
-cd /opt/subdomagic/output
+cd /opt/subdomagic/output/$domainName
 
 # dedup all subdomain findings 
 cat $domainName-amass.txt $domainName-subfinder.txt $domainName-massdns.txt > $domainName-subdomains.txt
@@ -94,10 +95,10 @@ fi
 
 echo -e "[+] Screenshotting webservers with EyeWitness..."
 
-cd ..
+cd /opt/EyeWitness
 
 # Run EyeWitness
-python EyeWitness.py -f $domainName-webservers.txt --web -d $domainName-EyeWitness
+python EyeWitness.py -f $domainName-webservers.txt --web -d /opt/$domainName/$domainName-EyeWitness
 
 
 
