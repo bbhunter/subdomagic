@@ -12,13 +12,14 @@ cat logo.txt
 
 # prompt user for doamin
 echo ""
-echo "Enter your target domain (such as \"example.com\") "
+echo "Enter your target domain (such as \"example.com\"): "
 
 read domainName
 
 # prompt user for nmap settings
 echo ""
 echo "Would you like fast or comprehensive output from the port scan?"
+echo ""
 echo "[1] Fast - 8 Common Ports"
 echo "[2] Comprehensive - TCP Top 1000"
 echo ""
