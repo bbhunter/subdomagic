@@ -1,6 +1,6 @@
 subdomagic
 ======
-Hello! This script is intended to speed up and simplify the process of subdomain enumeration. In particular, it's looking to:
+This script is intended to speed up and simplify the process of subdomain enumeration. In particular, it's looking to:
 
 1. Enumerate subdomains using efficient open source tools (Amass, Subfinder, MassDNS)
 2. Conduct scans for web servers hosted on common ports. 
@@ -8,10 +8,12 @@ Hello! This script is intended to speed up and simplify the process of subdomain
 
 
 ### Setup
+======
 1. Navigate into the setup directory
 2. Run the `setup.sh` script
 
 ### Usage
+======
 ```bash
 ./subdomagic.sh
 ```
@@ -20,6 +22,7 @@ Hello! This script is intended to speed up and simplify the process of subdomain
 [2] `comprehensive` is intended for more thorough enumeration and will scan the top 1000 TCFP ports. Useful if you want a more comprehensive scan on what ports are available externally.
 
 ### The Goodies
+======
 
 In the directory `output`, you will have a directory based on the domain name `example.com`. 
 
