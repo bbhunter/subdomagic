@@ -3,7 +3,7 @@ subdomagic
 This script is intended to speed up and simplify the process of subdomain enumeration. In particular, it's looking to:
 
 1. Enumerate subdomains using efficient open source tools (Amass, Subfinder, MassDNS)
-2. Conduct scans for web servers hosted on common ports. 
+2. Conduct scans for web servers hosted on common ports. (Nmap)
 3. Take screenshots and output a report. (EyeWitness)
 
 
@@ -17,7 +17,7 @@ This script is intended to speed up and simplify the process of subdomain enumer
 ```
 [1] `fast` is intended for host quick host discovery and also includes a TCP and version scan of common ports for nmap's OS detection. Useful if you just want to see externally available webservers.
 
-[2] `comprehensive` is intended for more thorough enumeration and will scan the top 1000 TCFP ports. Useful if you want a more comprehensive scan on what ports are available externally.
+[2] `comprehensive` is intended for more thorough enumeration and will scan the top 1000 TCP ports. Useful if you want a more comprehensive scan on what ports are available externally.
 
 ### The Goodies
 
