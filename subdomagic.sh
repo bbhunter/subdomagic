@@ -39,24 +39,34 @@ cd $domainName
 echo -e "[+] Running subodmain enumeration...this may take a while..."
 
 # run amass
-amass enum -src -d $domainName -o $domainName-amass.txt
+amass enum -src -d $domainName -o /opt/subdomagic/output/$domainName-amass.txt
 
 # run subfinder
 cd /opt/subfinder
-./subfinder -d $domainName -o $domainName-subfinder.txt
+./subfinder -d $domainName -o /opt/subdomagic/output/$domainName-subfinder.txt
 
 # run massdns
 cd /opt/massdns/scripts
-./subbrute.py lists/names.txt $domainName | ./bin/massdns -r lists/resolvers.txt -t A -o S -w $domainName-massdns.txt
+python subbrute.py lists/names.txt $domainName | ./bin/massdns -r lists/resolvers.txt -t A -o S -w /opt/subdomagic/output/$domainName-massdns.txt
 
 echo -e "[+] Consolidating subdomain findings..."
+
+cd /opt/subdomagic/output
 
 # dedup all subdomain findings 
 cat $domainName-amass.txt $domainName-subfinder.txt $domainName-massdns.txt > $domainName-subdomains.txt
 
 sort $domainName-subdomains.txt | uniq -u > $domainName-subdomains.txt
 
+rm $domainName-amass.txt
+rm $domainName-subfinder.txt
+rm $domainName-massdns.txt
+
 echo -e "[+] Conducting initial scan..."
+
+cd /opt/subdomagic/output/$domainName
+mkdir nmap_scans
+cd nmap_scans
 
 # run nmap scan for host discovery/web/few common ports
 nmap -oA $domainName-nmap-fast --stats-every 60s --log-errors --traceroute --reason --randomize-hosts -v -R -PE -PM -PO -PU -PS80,23,443,21,22,25,3389,110,445,139 -PA80,443,22,445,139 -sS -sV -p21,22,23,25,80,443,8080,8443 $domainName-subdomains.txt
@@ -83,8 +93,12 @@ then
 fi 
 
 echo -e "[+] Screenshotting webservers with EyeWitness..."
+
+cd ..
+
 # Run EyeWitness
-./EyeWitness.py -f $domainName-webservers.txt --web
+python EyeWitness.py -f $domainName-webservers.txt --web -d $domainName-EyeWitness
+
 
 
 
