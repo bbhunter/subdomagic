@@ -1,10 +1,9 @@
 #!/bin/bash
 
-GREEN = '\033[1;32'
-YELLOW = '\033[1;33'
 
 
-echo -e "${YELLOW}[+] Installing dependencies...."
+
+echo "[+] Installing dependencies...."
 
 #update
 sudo apt-get update
@@ -21,31 +20,34 @@ sudo snap refresh
 #install go
 sudo snap install --classic go
 
-echo -e "${YELLOW}[+] Installing amass..."
+echo "[+] Installing amass..."
 
 #install amass
 sudo snap install amass
 
-echo -e "${YELLOW}[+] Installing Subfinder..."
+echo "[+] Installing Subfinder..."
 #install subfinder
 cd /opt
 git clone https://github.com/subfinder/subfinder
+cd subfinder
 go get github.com/subfinder/subfinder
 
-echo -e "${YELLOW}Installing massdns..."
+echo "Installing massdns..."
 #install massdns
+cd /opt
 git clone https://github.com/blechschmidt/massdns
 cd massdns
 make
-cd ..
 
-echo -e "${YELLOW}Installing Eyewitness..."
+echo "Installing Eyewitness..."
 
 #install EyeWitness
+cd /opt
 git clone https://github.com/FortyNorthSecurity/EyeWitness
+cd EyeWitness
 cd setup
 ./setup.sh
 
-echo -e "${GREEN}Setup compelte!"
+echo "Setup complete!"
 
 
