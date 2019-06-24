@@ -25,6 +25,7 @@ echo ""
 
 read nmapChoice
 
+echo ""
 echo -e "[+] Making directory structure..."
 
 # make directory structure
@@ -98,7 +99,7 @@ echo -e "[+] Screenshotting webservers with EyeWitness..."
 cd /opt/EyeWitness
 
 # Run EyeWitness
-python EyeWitness.py -f $domainName-webservers.txt --web -d /opt/$domainName/$domainName-EyeWitness
+python EyeWitness.py -f /opt/$domainName-webservers.txt --web -d /opt/$domainName/$domainName-EyeWitness
 
 
 
