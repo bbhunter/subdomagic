@@ -21,9 +21,9 @@ This script is intended to speed up and simplify the process of subdomain enumer
 
 ### The Goodies
 
-In the directory `output`, you will have a directory based on the domain name `example.com`. 
+In the  directory `output`, you will have a directory based on the domain name `example.com`. 
 
-In the directory, the most important files would probably be:
+In the directory `output/example.com`, the most important files would probably be:
 1. `domain-fast.gnmap` scan depending on whether or not you did a quick or verbose scan
 2. `domain.eyewitness` folder and the `report.html` that is in it
 3. `domain.subdomains.txt` for any subdomains you're interested in
