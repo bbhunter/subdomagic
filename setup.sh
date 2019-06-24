@@ -2,6 +2,8 @@
 
 echo "[+] Installing dependencies...."
 
+mkdir output
+
 #update
 sudo apt-get update
 
@@ -28,6 +30,8 @@ cd /opt
 git clone https://github.com/subfinder/subfinder
 cd subfinder
 go get github.com/subfinder/subfinder
+sh build.sh
+go build
 
 echo "Installing massdns..."
 #install massdns
@@ -45,16 +49,8 @@ cd EyeWitness
 cd setup
 ./setup.sh
 
-#aesthetic
-wget https://raw.githubusercontent.com/gelosecurity/subdomagic/master/logo.txt
-clear
-
-mv logo.txt > templogo.txt
-cat templogo.txt
-rm templogo.txt
-
 #complete setup
-echo ""
+echo "subdomagic by gelosecurity.com"
 echo "[*] Installed snap"
 echo "[*] Installed go"
 echo "[*] Installed amass"
