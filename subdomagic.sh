@@ -60,6 +60,9 @@ cd /opt/subdomagic/output/$domainName
 # dedup all subdomain findings 
 
 mv /var/lib/snapd/void/$domainName-amass.txt /opt/subdomagic/output/$domainName
+
+cat $domainName-massdns.txt | awk '{print $1}' 
+
 cat $domainName-amass.txt $domainName-subfinder.txt $domainName-massdns.txt > $domainName-combinedSubdomains.txt
 
 sort $domainName-combinedSubdomains.txt | uniq -u > $domainName-subdomains.txt
