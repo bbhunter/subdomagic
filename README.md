@@ -41,9 +41,13 @@ DM me on Twitter https://twitter.com/gelosecurity.com
 
 Tools used:
 https://github.com/OWASP/Amass
+
 https://github.com/subfinder/subfinder
+
 https://github.com/blechschmidt/massdns
+
 https://github.com/FortyNorthSecurity/EyeWitness
+
 https://nmap.org/
 
 
