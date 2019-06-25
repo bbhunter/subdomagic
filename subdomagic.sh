@@ -50,7 +50,7 @@ cd /opt/subfinder
 
 # run massdns
 cd /opt/massdns/
-./scripts/subbrute.py lists/names.txt example.com |./bin/massdns -r lists/resolvers.txt -t A -o S -w /opt/subdomagic/output/$domainName/$domainName-massdns.txt
+./scripts/subbrute.py lists/all.txt example.com |./bin/massdns -r lists/resolvers.txt -t A -o S -w /opt/subdomagic/output/$domainName/$domainName-massdns.txt
 
 
 echo -e "[+] Consolidating subdomain findings..."
@@ -58,8 +58,6 @@ echo -e "[+] Consolidating subdomain findings..."
 cd /opt/subdomagic/output/$domainName
 
 # dedup all subdomain findings 
-
-
 
 mv /var/lib/snapd/void/$domainName-amass.txt /opt/subdomagic/output/$domainName
 cat $domainName-amass.txt $domainName-subfinder.txt $domainName-massdns.txt > $domainName-combinedSubdomains.txt
@@ -105,6 +103,10 @@ cd /opt/EyeWitness
 # Run EyeWitness
 python EyeWitness.py -f /opt/subdomagic/output/$domainName/$domainName-webservers.txt --web -d /opt/subdomagic/output/$domainName/$domainName-EyeWitness
 
+cd /opt/subdomagic/output/$domainName
+rm $domainName-amass.txt
+rm $domainName-massdns.txt
+rm $domainName-subfinder.txt
 
 clear
 echo "subdomagic by gelosecurity.com"

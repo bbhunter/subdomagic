@@ -1,10 +1,10 @@
 subdomagic
 ======
-This linux script is intended to speed up and simplify the process of subdomain enumeration. In particular, it's looking to:
+This linux script is intended to simplify the process of subdomain enumeration. Think of it as a "press this button and have it do all the things for subdomain web enumeration". In particular, it's looking to:
 
-1. Enumerate subdomains using efficient open source tools (Amass, Subfinder, MassDNS)
-2. Conduct scans for web servers hosted on common ports. (Nmap)
-3. Take screenshots and output a report. (EyeWitness)
+1. Enumerate and consolidate subdomains from multiple sources using multiple tools.
+2. Conduct scans for web servers hosted on common ports. 
+3. Take screenshots and output a report. 
 
 
 ### Setup
@@ -13,6 +13,9 @@ This linux script is intended to speed up and simplify the process of subdomain 
 2. Run the `setup.sh` script
 
 ### Usage
+
+Due to long enumeration time, it is highly suggested to use this on a VPS or remote host, and use the `screen` command to keep the session running in the background. 
+
 ```bash
 ./subdomagic.sh
 ```
@@ -24,10 +27,25 @@ This linux script is intended to speed up and simplify the process of subdomain 
 
 In the  directory `output`, you will have a directory based on the domain name `example.com`. 
 
-In the directory `output/example.com`, the most important files would probably be:
-1. `domain-nmap-fast.gnmap` or `domain-nmap-comprehensive.gnmap` scan depending on whether or not you did a quick or verbose scan
+In the directory `output/example.com`, the files included are
+1. `domain-nmap-fast.gnmap` or/and `domain-nmap-comprehensive.gnmap` scan depending on whether or not you did a quick or verbose scan
 2. `domain.eyewitness` folder and the `report.html` that is in it
-3. `domain.subdomains.txt` for any subdomains you're interested in
+3. `domain-subdomains.txt` for any subdomains you're interested in
+4. `domain-webservers.txt` for the IPs of active webservers within the subdomain list
+
+
+### Misc.
+
+Suggestions?
+DM me on Twitter https://twitter.com/gelosecurity.com
+
+Tools used:
+https://github.com/OWASP/Amass
+https://github.com/subfinder/subfinder
+https://github.com/blechschmidt/massdns
+https://github.com/FortyNorthSecurity/EyeWitness
+https://nmap.org/
+
 
 
 
