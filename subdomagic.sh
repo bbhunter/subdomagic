@@ -63,10 +63,6 @@ cat $domainName-amass.txt $domainName-subfinder.txt $domainName-massdns.txt > $d
 
 sort $domainName-subdomains.txt | uniq -u > $domainName-subdomains.txt
 
-rm $domainName-amass.txt
-rm $domainName-subfinder.txt
-rm $domainName-massdns.txt
-
 echo -e "[+] Conducting initial scan..."
 
 cd /opt/subdomagic/output/$domainName
