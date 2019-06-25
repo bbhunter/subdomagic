@@ -112,9 +112,12 @@ rm $domainName-massdns.txt
 rm $domainName-subfinder.txt
 
 clear
-echo "subdomagic by gelosecurity.com"
-echo "----------------------------------------------------"
+
+cd /opt/subdomagic
+
+cat logo.txt
 echo "Checkout the \"output\" directory for: " 
+echo ""
 echo "[*] EyeWitness Report"
 echo "[*] List of subdomains"
 echo "[*] Nmap scans"
