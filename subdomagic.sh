@@ -70,7 +70,7 @@ mkdir nmap_scans
 cd nmap_scans
 
 # run nmap scan for host discovery/web/few common ports
-nmap -oA $domainName-nmap-fast --stats-every 60s --log-errors --traceroute --reason --randomize-hosts -v -R -PE -PM -PO -PU -PS80,23,443,21,22,25,3389,110,445,139 -PA80,443,22,445,139 -sS -sV -p21,22,23,25,80,443,8080,8443 -iL $domainName-subdomains.txt
+nmap -oA $domainName-nmap-fast --stats-every 60s --log-errors --traceroute --reason --randomize-hosts -v -R -PE -PM -PO -PU -PS80,23,443,21,22,25,3389,110,445,139 -PA80,443,22,445,139 -sS -sV -p21,22,23,25,80,443,8080,8443 -iL ../$domainName-subdomains.txt
 
 # if statement for choice 1, quick nmap scan
 if [ $nmapChoice = "1" ]          
@@ -87,7 +87,7 @@ then
     grep -i "status: up" $domainName-nmap-fast.gnmap | awk -F" " '{print $2}' > $domainName-online.txt
 
     #nmap for tcp 1000
-    nmap -oA $domainName-comprehensive --stats-every 60s --log-errors --reason --randomize-hosts -v -R -Pn -A -sSVC --top-ports 1000 -iL $domainName-online.txt
+    nmap -oA $domainName-comprehensive --stats-every 60s --log-errors --reason --randomize-hosts -v -R -Pn -A -sSVC --top-ports 1000 -iL ../$domainName-online.txt
 
     # grep for webservers
     cat $domainName-comprehensive.gnmap | grep "open[^, ]*\(http\|sip\|ipp\|oem-agent\|soap\|snet-sensor-mgmt\|connect-proxy\|cpq-wbem\|event-port\|analogx\|proxy-plus\|saphostctrl\|saphostctrls\|spss\|sun-answerbook\|wsman\|wsmans\|wso2esb-console\|xmpp-bosh\)" | cut -d" " -f 2 | sort -u > ../$domainName-webservers.txt
