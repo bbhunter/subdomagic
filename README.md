@@ -39,17 +39,17 @@ In the directory `output/example.com`, the files included are
 Suggestions?
 DM me on Twitter https://twitter.com/gelosecurity.com
 
-Tools used:
-https://github.com/OWASP/Amass
+### Tools
 
-https://github.com/subfinder/subfinder
+* https://github.com/OWASP/Amass
 
-https://github.com/blechschmidt/massdns
+* https://github.com/subfinder/subfinder
 
-https://github.com/FortyNorthSecurity/EyeWitness
+* https://github.com/blechschmidt/massdns
 
-https://nmap.org/
+* https://github.com/FortyNorthSecurity/EyeWitness
 
+* https://nmap.org/
 
 
 
