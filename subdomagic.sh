@@ -62,9 +62,11 @@ cd /opt/subdomagic/output/$domainName
 
 
 mv /var/lib/snapd/void/$domainName-amass.txt /opt/subdomagic/output/$domainName
-cat $domainName-amass.txt $domainName-subfinder.txt $domainName-massdns.txt > $domainName-subdomains.txt
+cat $domainName-amass.txt $domainName-subfinder.txt $domainName-massdns.txt > $domainName-combinedSubdomains.txt
 
-sort $domainName-subdomains.txt | uniq -u > $domainName-subdomains.txt
+sort $domainName-combinedSubdomains.txt | uniq -u > $domainName-subdomains.txt
+
+rm $domainName-combinedSubdomains.txt
 
 echo -e "[+] Conducting initial scan..."
 
