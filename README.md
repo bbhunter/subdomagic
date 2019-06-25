@@ -37,7 +37,7 @@ In the directory `output/example.com`, the files included are
 ### Misc.
 
 Suggestions?
-DM me on Twitter https://twitter.com/gelosecurity.com
+DM me on Twitter: https://twitter.com/gelosecurity
 
 ### Tools
 
