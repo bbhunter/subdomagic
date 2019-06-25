@@ -99,3 +99,14 @@ cd /opt/EyeWitness
 
 # Run EyeWitness
 python EyeWitness.py -f /opt/subdomagic/output/$domainName/$domainName-webservers.txt --web -d /opt/subdomagic/output/$domainName/$domainName-EyeWitness
+
+
+clear
+echo "subdomagic by gelosecurity.com"
+echo "----------------------------------------------------"
+echo "Checkout the \"output\" directory for: " 
+echo "[*] EyeWitness Report"
+echo "[*] List of subdomains"
+echo "[*] Nmap scans"
+echo""
+echo "Subdomain enumeration complete!"
