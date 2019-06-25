@@ -100,7 +100,7 @@ echo -e "[+] Screenshotting webservers with EyeWitness..."
 cd /opt/EyeWitness
 
 # Run EyeWitness
-python EyeWitness.py -f /opt/subdomagic/$domainName/$domainName-webservers.txt --web -d /opt/subdomagic/$domainName/$domainName-EyeWitness
+python EyeWitness.py -f /opt/subdomagic/output/$domainName/$domainName-webservers.txt --web -d /opt/subdomagic/output/$domainName/$domainName-EyeWitness
 
 
 
