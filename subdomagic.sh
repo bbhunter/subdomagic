@@ -49,8 +49,9 @@ cd /opt/subfinder
 ./subfinder -d $domainName -o /opt/subdomagic/output/$domainName/$domainName-subfinder.txt
 
 # run massdns
-cd /opt/massdns/scripts
-python subbrute.py all.txt $domainName | ./bin/massdns -r lists/resolvers.txt -t A -o S -w /opt/subdomagic/output/$domainName/$domainName-massdns.txt
+cd /opt/massdns/
+./scripts/subbrute.py lists/names.txt example.com |./bin/massdns -r lists/resolvers.txt -t A -o S -w /opt/subdomagic/output$/domainName/$domainName-massdns.txt
+
 
 echo -e "[+] Consolidating subdomain findings..."
 
@@ -58,7 +59,9 @@ cd /opt/subdomagic/output/$domainName
 
 # dedup all subdomain findings 
 
-mv $domainName-amass.txt /opt/subdomagic/output/$domainName
+
+
+mv /var/lib/snapd/void/$domainName-amass.txt /opt/subdomagic/output/$domainName
 cat $domainName-amass.txt $domainName-subfinder.txt $domainName-massdns.txt > $domainName-subdomains.txt
 
 sort $domainName-subdomains.txt | uniq -u > $domainName-subdomains.txt
