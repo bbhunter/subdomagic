@@ -42,7 +42,7 @@ echo -e "[+] Running subodmain enumeration...this may take a while..."
 
 # run amass
 amass enum -o $domainName-amass.txt -d $domainName
-mv $domainName-amass.txt /opt/subdomagic/output/$domainName
+
 
 # run subfinder
 cd /opt/subfinder
@@ -57,6 +57,8 @@ echo -e "[+] Consolidating subdomain findings..."
 cd /opt/subdomagic/output/$domainName
 
 # dedup all subdomain findings 
+
+mv $domainName-amass.txt /opt/subdomagic/output/$domainName
 cat $domainName-amass.txt $domainName-subfinder.txt $domainName-massdns.txt > $domainName-subdomains.txt
 
 sort $domainName-subdomains.txt | uniq -u > $domainName-subdomains.txt
