@@ -50,7 +50,7 @@ cd /opt/subfinder
 
 # run massdns
 cd /opt/massdns/
-./scripts/subbrute.py lists/names.txt example.com |./bin/massdns -r lists/resolvers.txt -t A -o S -w /opt/subdomagic/output$/domainName/$domainName-massdns.txt
+./scripts/subbrute.py lists/names.txt example.com |./bin/massdns -r lists/resolvers.txt -t A -o S -w /opt/subdomagic/output/$domainName/$domainName-massdns.txt
 
 
 echo -e "[+] Consolidating subdomain findings..."
