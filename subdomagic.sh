@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ ! -d "output" ]; then
-  exit "Please run setup.sh"
+  exit "[e\[91Please run setup.sh\e[0m"
 fi 
 
 # clear terminal (aesthetic!)
@@ -12,13 +12,13 @@ cat logo.txt
 
 # prompt user for doamin
 echo ""
-echo "Enter your target domain (such as \"example.com\"): "
+echo "\e[1mEnter your target domain (such as \"example.com\"): \e[0"
 
 read domainName
 
 # prompt user for nmap settings
 echo ""
-echo "Would you like fast or comprehensive output from the port scan?"
+echo "\e[1mWould you like fast or comprehensive output from the port scan?\e[0"
 echo ""
 echo "[1] Fast - 8 Common Ports"
 echo "[2] Comprehensive - TCP Top 1000"
@@ -27,7 +27,7 @@ echo ""
 read nmapChoice
 
 echo ""
-echo -e "[+] Making directory structure..."
+echo -e "\e[102m[+] Making directory structure\e[49m"
 
 # make directory structure
 cd output
@@ -38,7 +38,7 @@ fi
 
 cd $domainName
 
-echo -e "[+] Running subodmain enumeration...this may take a while..."
+echo -e "\e[102m[+] Running subodmain enumeration...this may take a while...\e[49m"
 
 # run amass
 amass enum -o $domainName-amass.txt -d $domainName
@@ -53,7 +53,7 @@ cd /opt/massdns/
 ./scripts/subbrute.py lists/all.txt example.com |./bin/massdns -r lists/resolvers.txt -t A -o S -w /opt/subdomagic/output/$domainName/$domainName-massdns.txt
 
 
-echo -e "[+] Consolidating subdomain findings..."
+echo -e "\e[102m[+] Consolidating subdomain findings...\e[49m"
 
 cd /opt/subdomagic/output/$domainName
 
@@ -69,7 +69,7 @@ sort $domainName-combinedSubdomains.txt | uniq -u > $domainName-subdomains.txt
 
 rm $domainName-combinedSubdomains.txt
 
-echo -e "[+] Conducting initial scan..."
+echo -e "\e[102m[+] Conducting initial scan...\e[49m"
 
 cd /opt/subdomagic/output/$domainName
 mkdir nmap_scans
@@ -88,7 +88,7 @@ fi
 # if statement for choice 2, nmap tcp top 1000
 if [ $nmapChoice = "2" ]             
 then
-    echo -e "[+] Conducting comprehensive scan..."
+    echo -e "\e[102m[+] Conducting comprehensive scan...\e[49m"
     #grep for online hosts
     grep -i "status: up" $domainName-nmap-fast.gnmap | awk -F" " '{print $2}' > $domainName-online.txt
 
@@ -99,7 +99,7 @@ then
     cat $domainName-comprehensive.gnmap | grep "open[^, ]*\(http\|sip\|ipp\|oem-agent\|soap\|snet-sensor-mgmt\|connect-proxy\|cpq-wbem\|event-port\|analogx\|proxy-plus\|saphostctrl\|saphostctrls\|spss\|sun-answerbook\|wsman\|wsmans\|wso2esb-console\|xmpp-bosh\)" | cut -d" " -f 2 | sort -u > ../$domainName-webservers.txt
 fi 
 
-echo -e "[+] Screenshotting webservers with EyeWitness..."
+echo -e "\e[102m[+] Screenshotting webservers with EyeWitness...\e[49m"
 
 cd /opt/EyeWitness
 
@@ -116,10 +116,10 @@ clear
 cd /opt/subdomagic
 
 cat logo.txt
-echo "Checkout the \"output\" directory for: " 
+echo "Checkout the \e[1m\"output\"\e[21m directory for: " 
 echo ""
 echo "[*] EyeWitness Report"
 echo "[*] List of subdomains"
 echo "[*] Nmap scans"
 echo""
-echo "Subdomain enumeration complete!"
+echo "\e[1mSubdomain enumeration complete!\e[21m"
