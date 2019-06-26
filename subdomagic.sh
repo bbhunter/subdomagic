@@ -18,7 +18,7 @@ read domainName
 
 # prompt user for nmap settings
 echo ""
-echo -e "\e[1mWould you like fast or comprehensive output from the port scan?\e[0"
+echo -e "\e[1mWould you like fast or comprehensive output from the port scan? \e[0"
 echo ""
 echo "[1] Fast - 8 Common Ports"
 echo "[2] Comprehensive - TCP Top 1000"
