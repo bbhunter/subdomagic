@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ ! -d "output" ]; then
-  exit "[e\[91Please run setup.sh\e[0m"
+  exit "[Please run \"setup.sh\""
 fi 
 
 # clear terminal (aesthetic!)
