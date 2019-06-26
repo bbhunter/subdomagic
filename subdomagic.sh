@@ -12,13 +12,13 @@ cat logo.txt
 
 # prompt user for doamin
 echo ""
-echo "\e[1mEnter your target domain (such as \"example.com\"): \e[0"
+echo -e "\e[1mEnter your target domain (such as \"example.com\"): \e[0"
 
 read domainName
 
 # prompt user for nmap settings
 echo ""
-echo "\e[1mWould you like fast or comprehensive output from the port scan?\e[0"
+echo -e "\e[1mWould you like fast or comprehensive output from the port scan?\e[0"
 echo ""
 echo "[1] Fast - 8 Common Ports"
 echo "[2] Comprehensive - TCP Top 1000"
@@ -116,10 +116,10 @@ clear
 cd /opt/subdomagic
 
 cat logo.txt
-echo "Checkout the \e[1m\"output\"\e[21m directory for: " 
-echo ""
-echo "[*] EyeWitness Report"
-echo "[*] List of subdomains"
-echo "[*] Nmap scans"
-echo""
-echo "\e[1mSubdomain enumeration complete!\e[21m"
+echo -e "Checkout the \e[1m\"output\"\e[21m directory for: " 
+echo -e ""
+echo -e "[*] EyeWitness Report"
+echo -e "[*] List of subdomains"
+echo -e "[*] Nmap scans"
+echo -e ""
+echo -e  "\e[1mSubdomain enumeration complete!\e[21m"
