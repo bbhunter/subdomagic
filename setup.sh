@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "\e[102m[+] Installing dependencies....\e[49m"
+echo -e "\e[102m[+] Installing dependencies....\e[49m"
 
 mkdir output
 
@@ -19,12 +19,12 @@ sudo snap refresh
 #install go
 sudo snap install --classic go
 
-echo "\e[102m[+] Installing amass...\e[49m"
+echo -e "\e[102m[+] Installing amass...\e[49m"
 
 #install amass
 sudo snap install amass
 
-echo "\e[102m[+] Installing Subfinder...\e[49m"
+echo -e "\e[102m[+] Installing Subfinder...\e[49m"
 #install subfinder
 cd /opt
 git clone https://github.com/subfinder/subfinder
@@ -33,7 +33,7 @@ go get github.com/subfinder/subfinder
 sh build.sh
 go build
 
-echo "\e[102m[+] Installing massdns...\e[49m"
+echo -e "\e[102m[+] Installing massdns...\e[49m"
 #install massdns
 cd /opt
 git clone https://github.com/blechschmidt/massdns
@@ -43,7 +43,7 @@ make
 cd /opt/massdns/lists
 wget https://gist.githubusercontent.com/jhaddix/86a06c5dc309d08580a018c66354a056/raw/96f4e51d96b2203f19f6381c8c545b278eaa0837/all.txt
 
-echo "\e[102m[+] Installing Eyewitness...\e[49m"
+echo -e "\e[102m[+] Installing Eyewitness...\e[49m"
 
 #install EyeWitness
 cd /opt
@@ -55,14 +55,13 @@ cd setup
 clear
 
 #complete setup
-echo "\e[1msubdomagic by gelosecurity.com\e[21m"
-echo "\e[92m[*] Installed snap"
-echo "[*] Installed go"
-echo "[*] Installed amass"
-echo "[*] Installed subfinder"
-echo "[*] Installed massdns"
-echo "[*] Installed EyeWitness"
-echo""
-echo "\e[1mSetup complete!"
-
+echo -e "\e[1msubdomagic by gelosecurity.com\e[21m"
+echo -e "\e[92m[*] Installed snap"
+echo -e "[*] Installed go"
+echo -e "[*] Installed amass"
+echo -e "[*] Installed subfinder"
+echo -e "[*] Installed massdns"
+echo -e "[*] Installed EyeWitness"
+echo -e""
+echo -e "\e[1mSetup complete!"
 
