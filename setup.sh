@@ -56,6 +56,7 @@ clear
 
 #complete setup
 echo -e "\e[1msubdomagic by gelosecurity.com\e[22m"
+echo -e ""
 echo -e "\e[92m[*] Installed snap"
 echo -e "[*] Installed go"
 echo -e "[*] Installed amass"
