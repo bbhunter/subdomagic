@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [ ! d "output" ]; then
+  exit "You have already installed subdomagic!"
+fi 
+
 echo -e "\e[102m[+] Installing dependencies....\e[49m"
 
 mkdir output
