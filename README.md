@@ -36,11 +36,11 @@ In the directory `output/example.com`, the files included are
 
 ### Misc.
 
-The massdns command runs Jason Haddix's [`all.txt`](https://gist.github.com/jhaddix/f64c97d0863a78454e44c2f7119c2a6a) for bruting.
+The massdns command runs Jason Haddix's [`all.txt`](https://gist.github.com/jhaddix/f64c97d0863a78454e44c2f7119c2a6a) for bruting. This is a "catch all" way of finding subdomains that couldn't be found through web scraping.
 
 You can change the wordlist by replacing all.txt with your own subdomain wordlist if you would like faster DNS enumeration.
 
-Suggestions?
+### Suggestions?
 DM me on Twitter: https://twitter.com/gelosecurity
 
 ### Tools
