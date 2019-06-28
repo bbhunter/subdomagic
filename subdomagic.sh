@@ -53,6 +53,7 @@ cd /opt/massdns/
 
 if [ $nmapChoice ="1"]
 ./scripts/subbrute.py lists/names.txt $domainName |./bin/massdns -r lists/resolvers.txt -t A -o S -w /opt/subdomagic/output/$domainName/$domainName-massdns.txt
+fi
 
 if [ $nmapChoice ="2" ]
 ./scripts/subbrute.py lists/all.txt $domainName |./bin/massdns -r lists/resolvers.txt -t A -o S -w /opt/subdomagic/output/$domainName/$domainName-massdns.txt
