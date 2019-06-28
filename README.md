@@ -19,9 +19,9 @@ Due to long enumeration time, it is highly suggested to use this on a VPS or rem
 ```bash
 ./subdomagic.sh
 ```
-[1] `fast` is intended for host quick host discovery and also includes a TCP and version scan of common ports for nmap's OS detection. Useful if you just want to see externally available webservers.
+[1] `fast` is intended for host quick subdomain/host discovery and also includes a TCP and version scan of common ports for nmap's OS detection. Useful if you just want to see externally available webservers in a reasonable amount of time. 
 
-[2] `comprehensive` is intended for more thorough enumeration and will scan the top 1000 TCP ports. Useful if you want a more comprehensive scan on what ports are available externally.
+[2] `comprehensive` is intended for extremely thorough subdomain enumeration and will scan the top 1000 TCP ports on each active host. Useful if you want a more comprehensive scan on what ports are available externally. This is intended as a "catch all method" as it uses Jason Haddix's [`all.txt`](https://gist.github.com/jhaddix/f64c97d0863a78454e44c2f7119c2a6a) for bruting subdomains.
 
 ### The Goodies
 
@@ -33,12 +33,6 @@ In the directory `output/example.com`, the files included are
 3. `domain-subdomains.txt` for any subdomains you're interested in
 4. `domain-webservers.txt` for the IPs of active webservers within the subdomain list
 
-
-### Misc.
-
-The massdns command runs Jason Haddix's [`all.txt`](https://gist.github.com/jhaddix/f64c97d0863a78454e44c2f7119c2a6a) for bruting. This is a "catch all" way of finding subdomains that couldn't be found through web scraping.
-
-You can change the wordlist by replacing all.txt with your own subdomain wordlist if you would like faster DNS enumeration.
 
 ### Suggestions?
 DM me on Twitter: https://twitter.com/gelosecurity

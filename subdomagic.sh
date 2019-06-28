@@ -20,8 +20,8 @@ read domainName
 echo ""
 echo -e "\e[1mWould you like fast or comprehensive output from the port scan? \e[22m"
 echo ""
-echo "[1] Fast - 8 Common Ports"
-echo "[2] Comprehensive - TCP Top 1000"
+echo "[1] Fast - 8 Common Ports, Smaller Subdomain Wordlist"
+echo "[2] Comprehensive - TCP Top 1000, Gigantic Wordlist"
 echo ""
 
 read nmapChoice
@@ -50,7 +50,13 @@ cd /opt/subfinder
 
 # run massdns
 cd /opt/massdns/
-./scripts/subbrute.py lists/all.txt example.com |./bin/massdns -r lists/resolvers.txt -t A -o S -w /opt/subdomagic/output/$domainName/$domainName-massdns.txt
+
+if [ $nmapChoice ="1"]
+./scripts/subbrute.py lists/names.txt $domainName |./bin/massdns -r lists/resolvers.txt -t A -o S -w /opt/subdomagic/output/$domainName/$domainName-massdns.txt
+
+if [ $nmapChoice ="2" ]
+./scripts/subbrute.py lists/all.txt $domainName |./bin/massdns -r lists/resolvers.txt -t A -o S -w /opt/subdomagic/output/$domainName/$domainName-massdns.txt
+fi
 
 
 echo -e "\e[102m[+] Consolidating subdomain findings...\e[49m"
