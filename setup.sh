@@ -11,7 +11,12 @@ mkdir output
 _last=`pwd`
 
 #install go
-sudo snap install --classic go
+wget https://dl.google.com/go/go1.12.6.linux-amd64.tar.gz
+tar -xf go1.12.6.linux-amd64.tar.gz
+
+PATH="./go/bin:${PATH}"
+GOPATH=`pwd`
+
 
 echo -e "\e[102m[+] Installing amass...\e[49m"
 
