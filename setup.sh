@@ -14,9 +14,8 @@ _last=`pwd`
 wget https://dl.google.com/go/go1.12.6.linux-amd64.tar.gz
 tar -xf go1.12.6.linux-amd64.tar.gz
 
-PATH="./go/bin:${PATH}"
-GOPATH=`pwd`
-
+PATH="`pwd`/go/bin:${PATH}"
+GOPATH="`pwd`/gopath"
 
 echo -e "\e[102m[+] Installing amass...\e[49m"
 
