@@ -5,7 +5,8 @@ if [ ! -d "output" ]; then
 fi
 
 PATH="`pwd`/:${PATH}"
-OUTPUT_DIR="`pwd`/output"
+CURRENT_DIR=`pwd`
+OUTPUT_DIR="${CURRENT_DIR}/output"
 
 # clear terminal (aesthetic!)
 clear
@@ -68,7 +69,7 @@ cd /opt/subdomagic/output/$domainName
 
 # dedup all subdomain findings 
 
-mv /var/lib/snapd/void/$domainName-amass.txt /opt/subdomagic/output/$domainName
+mv /var/lib/snapd/void/$domainName-amass.txt ${OUTPUT_DIR}/$domainName
 
 cat $domainName-massdns.txt | awk '{print $1}' 
 
@@ -80,9 +81,8 @@ rm $domainName-combinedSubdomains.txt
 
 echo -e "\e[102m[+] Conducting initial scan...\e[49m"
 
-cd /opt/subdomagic/output/$domainName
-mkdir nmap_scans
-cd nmap_scans
+mkdir -p ${OUTPUT_DIR}/$domainName/nmap_scans
+cd ${OUTPUT_DIR}/$domainName/nmap_scans
 
 # run nmap scan for host discovery/web/few common ports
 nmap -oA $domainName-nmap-fast --stats-every 60s --log-errors --traceroute --reason --randomize-hosts -v -R -PE -PM -PO -PU -PS80,23,443,21,22,25,3389,110,445,139 -PA80,443,22,445,139 -sS -sV -p21,22,23,25,80,443,8080,8443 -iL ../$domainName-subdomains.txt
@@ -110,10 +110,8 @@ fi
 
 echo -e "\e[102m[+] Screenshotting webservers with EyeWitness...\e[49m"
 
-cd /opt/EyeWitness
-
 # Run EyeWitness
-python EyeWitness.py -f ${OUTPUT_DIR}/$domainName/$domainName-webservers.txt --web -d ${OUTPUT_DIR}/$domainName/$domainName-EyeWitness
+python ${CURRENT_DIR}/EyeWitness/EyeWitness.py -f ${OUTPUT_DIR}/$domainName/$domainName-webservers.txt --web -d ${OUTPUT_DIR}/$domainName/$domainName-EyeWitness
 
 cd ${OUTPUT_DIR}/$domainName
 rm $domainName-amass.txt
@@ -122,7 +120,7 @@ rm $domainName-subfinder.txt
 
 clear
 
-cd /opt/subdomagic
+cd ${CURRENT_DIR}
 
 cat logo.txt
 echo -e "Checkout the \e[1m\"output\"\e[22m directory for: " 
