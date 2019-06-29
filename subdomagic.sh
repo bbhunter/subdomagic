@@ -2,7 +2,10 @@
 
 if [ ! -d "output" ]; then
   exit "Please run \"setup.sh\""
-fi 
+fi
+
+PATH="`pwd`/:${PATH}"
+OUTPUT_DIR="`pwd`/output"
 
 # clear terminal (aesthetic!)
 clear
@@ -45,20 +48,17 @@ amass enum -o $domainName-amass.txt -d $domainName
 
 
 # run subfinder
-cd /opt/subfinder
-./subfinder -d $domainName -o /opt/subdomagic/output/$domainName/$domainName-subfinder.txt
+subfinder -d $domainName -o ${OUTPUT_DIR}/$domainName/$domainName-subfinder.txt
 
 # run massdns
-cd /opt/massdns/
-
 if [ $nmapChoice ="1"]
 then
-./scripts/subbrute.py lists/names.txt $domainName |./bin/massdns -r lists/resolvers.txt -t A -o S -w /opt/subdomagic/output/$domainName/$domainName-massdns.txt
+massdns/scripts/subbrute.py lists/names.txt $domainName |./bin/massdns -r lists/resolvers.txt -t A -o S -w ${OUTPUT_DIR}/output/$domainName/$domainName-massdns.txt
 fi
 
 if [ $nmapChoice ="2" ]
 then
-./scripts/subbrute.py lists/all.txt $domainName |./bin/massdns -r lists/resolvers.txt -t A -o S -w /opt/subdomagic/output/$domainName/$domainName-massdns.txt
+massdns/scripts/subbrute.py lists/all.txt $domainName |./bin/massdns -r lists/resolvers.txt -t A -o S -w ${OUTPUT_DIR}/$domainName/$domainName-massdns.txt
 fi
 
 
@@ -113,9 +113,9 @@ echo -e "\e[102m[+] Screenshotting webservers with EyeWitness...\e[49m"
 cd /opt/EyeWitness
 
 # Run EyeWitness
-python EyeWitness.py -f /opt/subdomagic/output/$domainName/$domainName-webservers.txt --web -d /opt/subdomagic/output/$domainName/$domainName-EyeWitness
+python EyeWitness.py -f ${OUTPUT_DIR}/$domainName/$domainName-webservers.txt --web -d ${OUTPUT_DIR}/$domainName/$domainName-EyeWitness
 
-cd /opt/subdomagic/output/$domainName
+cd ${OUTPUT_DIR}/$domainName
 rm $domainName-amass.txt
 rm $domainName-massdns.txt
 rm $domainName-subfinder.txt
