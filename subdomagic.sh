@@ -1,7 +1,9 @@
 #!/bin/bash
 
 if [ ! -d "output" ]; then
-  exit "Please run \"setup.sh\""
+  echo "[Error]: Please run \"setup.sh\""
+  echo ""
+  exit 1
 fi 
 
 # clear terminal (aesthetic!)

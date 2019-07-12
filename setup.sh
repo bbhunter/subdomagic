@@ -1,15 +1,22 @@
+
+
 #!/bin/bash
 
-if [ ! d "output" ]; then
+if [[ -d "output" ]]; then
   exit "You have already installed subdomagic!"
 fi 
 
-echo -e "\e[102m[+] Installing dependencies....\e[49m"
+if [ "${userid}" != '0' ]; then
+  echo '[Error]: You must run this setup script with root privileges.'
+  echo
+  exit 1
+fi
+
+echo -e "\e[102m[+] Installing dependencies...\e[49m"
 
 mkdir output
-
-#update
-sudo apt-get update
+echo -e "\e[102m[+] Installing nmap...\e[49m"
+sudo apt-get -y install nmap
 
 # install snap 
 sudo apt install snapd
@@ -61,7 +68,8 @@ clear
 #complete setup
 echo -e "\e[1msubdomagic by gelosecurity.com\e[22m"
 echo -e ""
-echo -e "\e[92m[*] Installed snap"
+echo -e "\e[92m[[*] Installed nmap"
+echo -e "[*] Installed snap"
 echo -e "[*] Installed go"
 echo -e "[*] Installed amass"
 echo -e "[*] Installed subfinder"
