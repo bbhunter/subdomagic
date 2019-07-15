@@ -12,6 +12,9 @@ if [ "${UID}" != '0' ]; then
   exit 1
 fi
 
+#current directory
+cur_dir=`pwd`
+
 echo -e "\e[102m[+] Installing dependencies...\e[49m"
 
 mkdir output
@@ -38,7 +41,7 @@ sudo snap install amass
 
 echo -e "\e[102m[+] Installing Subfinder...\e[49m"
 #install subfinder
-cd /opt
+cd $cur_dir/tools
 git clone https://github.com/subfinder/subfinder
 cd subfinder
 go get github.com/subfinder/subfinder
@@ -47,18 +50,18 @@ go build
 
 echo -e "\e[102m[+] Installing massdns...\e[49m"
 #install massdns
-cd /opt
+cd $cur_dir/tools
 git clone https://github.com/blechschmidt/massdns
 cd massdns
 make
 
-cd /opt/massdns/lists
+cd $cur_dir/tools/massdns/lists
 wget https://gist.githubusercontent.com/jhaddix/86a06c5dc309d08580a018c66354a056/raw/96f4e51d96b2203f19f6381c8c545b278eaa0837/all.txt
 
 echo -e "\e[102m[+] Installing Eyewitness...\e[49m"
 
 #install EyeWitness
-cd /opt
+cd $cur_dir/tools
 git clone https://github.com/FortyNorthSecurity/EyeWitness
 cd EyeWitness
 cd setup
