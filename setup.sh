@@ -13,14 +13,18 @@ fi
 #current directory
 cur_dir=`pwd`
 
-
-
 echo -e "\e[102m[+] Installing dependencies...\e[49m"
 
 mkdir tools
 mkdir output
 echo -e "\e[102m[+] Installing nmap...\e[49m"
 sudo apt-get -y install nmap
+
+# install make for massdns
+sudo apt install make
+
+# install gcc for massdns
+sudo apt install gcc
 
 # install snap 
 sudo apt install snapd
@@ -74,6 +78,8 @@ clear
 echo -e "\e[1msubdomagic by gelosecurity.com\e[22m"
 echo -e ""
 echo -e "\e[92m[[*] Installed nmap"
+echo -e "[*] Installed make"
+echo -e "[*] Installed gcc"
 echo -e "[*] Installed snap"
 echo -e "[*] Installed go"
 echo -e "[*] Installed amass"
