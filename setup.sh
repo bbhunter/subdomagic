@@ -1,5 +1,3 @@
-
-
 #!/bin/bash
 
 if [[ -d "output" ]]; then
@@ -15,8 +13,11 @@ fi
 #current directory
 cur_dir=`pwd`
 
+
+
 echo -e "\e[102m[+] Installing dependencies...\e[49m"
 
+mkdir tools
 mkdir output
 echo -e "\e[102m[+] Installing nmap...\e[49m"
 sudo apt-get -y install nmap

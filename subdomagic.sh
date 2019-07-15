@@ -55,29 +55,29 @@ amass enum -o /tmp/$domainName-amass.txt -d $domainName
 
 # run subfinder
 cd $cur_dir/tools/subfinder
-./subfinder -d $domainName -o $cur_dir/subdomagic/output/$domainName/$domainName-subfinder.txt
+./subfinder -d $domainName -o $cur_dir/output/$domainName/$domainName-subfinder.txt
 
 # run massdns
 cd $cur_dir/tools/massdns/
 
 if [[ $nmapChoice = "1" ]]
 then
-./scripts/subbrute.py lists/names.txt $domainName |./bin/massdns -r lists/resolvers.txt -t A -o S -w $cur_dir/subdomagic/output/$domainName/$domainName-massdns.txt
+./scripts/subbrute.py lists/names.txt $domainName |./bin/massdns -r lists/resolvers.txt -t A -o S -w $cur_dir/output/$domainName/$domainName-massdns.txt
 fi
 
 if [[ $nmapChoice = "2" ]]
 then
-./scripts/subbrute.py lists/all.txt $domainName |./bin/massdns -r lists/resolvers.txt -t A -o S -w $cur_dir/subdomagic/output/$domainName/$domainName-massdns.txt
+./scripts/subbrute.py lists/all.txt $domainName |./bin/massdns -r lists/resolvers.txt -t A -o S -w $cur_dir/output/$domainName/$domainName-massdns.txt
 fi
 
 
 echo -e "\e[102m[+] Consolidating subdomain findings...\e[49m"
 
-cd $cur_dir/subdomagic/output/$domainName
+cd $cur_dir/output/$domainName
 
 # dedup all subdomain findings 
 
-mv /tmp/snap.amass/tmp/$domainName-amass.txt $cur_dir/subdomagic/output/$domainName
+mv /tmp/snap.amass/tmp/$domainName-amass.txt $cur_dir/output/$domainName
 
 cat $domainName-massdns.txt | cut -d "." -f 1,2,3 > $domainName-massdns.txt 
 
@@ -95,7 +95,7 @@ rm $domainName-combinedSubdomains.txt
 
 echo -e "\e[102m[+] Conducting initial scan...\e[49m"
 
-cd $cur_dir/subdomagic/output/$domainName
+cd $cur_dir/output/$domainName
 mkdir nmap_scans
 cd nmap_scans
 
@@ -128,13 +128,13 @@ echo -e "\e[102m[+] Screenshotting webservers with EyeWitness...\e[49m"
 cd $cur_dir/tools/EyeWitness
 
 # Run EyeWitness
-python EyeWitness.py -f $cur_dir/subdomagic/output/$domainName/$domainName-webservers.txt --web -d $cur_dir/subdomagic/output/$domainName/$domainName-EyeWitness
+python EyeWitness.py -f $cur_dir/output/$domainName/$domainName-webservers.txt --web -d $cur_dir/output/$domainName/$domainName-EyeWitness
 
-cd $cur_dir/subdomagic/output/$domainName
+cd $cur_dir/output/$domainName
 
 clear
 
-cd $cur_dir/subdomagic
+cd $cur_dir
 
 cat logo.txt
 echo -e ""
