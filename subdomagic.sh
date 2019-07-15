@@ -6,6 +6,12 @@ if [ ! -d "output" ]; then
   exit 1
 fi 
 
+if [ "${UID}" != '0' ]; then
+  echo '[Error]: You must run this script with root privileges.'
+  echo
+  exit 1
+fi
+
 # clear terminal (aesthetic!)
 clear
 
@@ -43,8 +49,7 @@ cd $domainName
 echo -e "\e[102m[+] Running subodmain enumeration...this may take a while...\e[49m"
 
 # run amass
-amass enum -o $domainName-amass.txt -d $domainName
-
+amass enum -o /tmp/$domainName-amass.txt -d $domainName
 
 # run subfinder
 cd /opt/subfinder
@@ -53,12 +58,12 @@ cd /opt/subfinder
 # run massdns
 cd /opt/massdns/
 
-if [ $nmapChoice ="1"]
+if [[ $nmapChoice = "1" ]]
 then
 ./scripts/subbrute.py lists/names.txt $domainName |./bin/massdns -r lists/resolvers.txt -t A -o S -w /opt/subdomagic/output/$domainName/$domainName-massdns.txt
 fi
 
-if [ $nmapChoice ="2" ]
+if [[ $nmapChoice = "2" ]]
 then
 ./scripts/subbrute.py lists/all.txt $domainName |./bin/massdns -r lists/resolvers.txt -t A -o S -w /opt/subdomagic/output/$domainName/$domainName-massdns.txt
 fi
@@ -70,13 +75,19 @@ cd /opt/subdomagic/output/$domainName
 
 # dedup all subdomain findings 
 
-mv /var/lib/snapd/void/$domainName-amass.txt /opt/subdomagic/output/$domainName
+mv /tmp/snap.amass/tmp/$domainName-amass.txt /opt/subdomagic/output/$domainName
 
-cat $domainName-massdns.txt | awk '{print $1}' 
+cat $domainName-massdns.txt | cut -d "." -f 1,2,3 > $domainName-massdns.txt 
 
 cat $domainName-amass.txt $domainName-subfinder.txt $domainName-massdns.txt > $domainName-combinedSubdomains.txt
 
+
+echo -e "Found the following subdomains:"
+
+cat $domainName-combinedSubdomains.txt 
+
 sort $domainName-combinedSubdomains.txt | uniq -u > $domainName-subdomains.txt
+
 
 rm $domainName-combinedSubdomains.txt
 
@@ -90,14 +101,14 @@ cd nmap_scans
 nmap -oA $domainName-nmap-fast --stats-every 60s --log-errors --traceroute --reason --randomize-hosts -v -R -PE -PM -PO -PU -PS80,23,443,21,22,25,3389,110,445,139 -PA80,443,22,445,139 -sS -sV -p21,22,23,25,80,443,8080,8443 -iL ../$domainName-subdomains.txt
 
 # if statement for choice 1, quick nmap scan
-if [ $nmapChoice = "1" ]          
+if [[ $nmapChoice = "1" ]]          
 then
     # grep for webservers
     cat $domainName-nmap-fast.gnmap | grep "open[^, ]*\(http\|sip\|ipp\|oem-agent\|soap\|snet-sensor-mgmt\|connect-proxy\|cpq-wbem\|event-port\|analogx\|proxy-plus\|saphostctrl\|saphostctrls\|spss\|sun-answerbook\|wsman\|wsmans\|wso2esb-console\|xmpp-bosh\)" | cut -d" " -f 2 | sort -u > ../$domainName-webservers.txt
 fi 
 
 # if statement for choice 2, nmap tcp top 1000
-if [ $nmapChoice = "2" ]             
+if [[ $nmapChoice = "2" ]]             
 then
     echo -e "\e[102m[+] Conducting comprehensive scan...\e[49m"
     #grep for online hosts
@@ -118,15 +129,13 @@ cd /opt/EyeWitness
 python EyeWitness.py -f /opt/subdomagic/output/$domainName/$domainName-webservers.txt --web -d /opt/subdomagic/output/$domainName/$domainName-EyeWitness
 
 cd /opt/subdomagic/output/$domainName
-rm $domainName-amass.txt
-rm $domainName-massdns.txt
-rm $domainName-subfinder.txt
 
 clear
 
 cd /opt/subdomagic
 
 cat logo.txt
+echo -e ""
 echo -e "Checkout the \e[1m\"output\"\e[22m directory for: " 
 echo -e ""
 echo -e "[*] EyeWitness Report"

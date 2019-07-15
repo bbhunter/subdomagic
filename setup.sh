@@ -24,7 +24,8 @@ sudo systemctl start snapd
 sudo systemctl enable snapd
 sudo systemctl start apparmor
 sudo systemctl enable apparmor
-export PATH=$PATH:/snap/bin
+echo "PATH=$PATH:/snap/bin" >> ~/.bashrc
+source ~/.bashrc
 sudo snap refresh
 
 #install go
@@ -75,6 +76,6 @@ echo -e "[*] Installed amass"
 echo -e "[*] Installed subfinder"
 echo -e "[*] Installed massdns"
 echo -e "[*] Installed EyeWitness"
-echo -e""
+echo -e ""
 echo -e "\e[1mSetup complete!"
 
