@@ -26,6 +26,9 @@ sudo apt install make
 # install gcc for massdns
 sudo apt install gcc
 
+# Naje syre setup tools are up to date
+pip install --upgrade setuptools
+
 # install snap for go/amass
 sudo apt install snapd
 sudo systemctl start snapd
