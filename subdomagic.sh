@@ -89,9 +89,10 @@ echo -e "Found the following subdomains:"
 
 cat $domainName-combinedSubdomains.txt 
 
+cat gelosecurity.com-combinedSubdomains.txt | grep -i "^\." | cut -d "." -f 2,3 >> $domainName-subdomains.txt 
+
 sort $domainName-combinedSubdomains.txt | uniq -u > $domainName-subdomains.txt
 
-cat gelosecurity.com-subdomains.txt | grep -i "^\." | cut -d "." -f 2,3 >> $domainName-subdomains.txt 
 
 rm $domainName-combinedSubdomains.txt
 

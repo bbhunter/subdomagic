@@ -26,7 +26,7 @@ sudo apt install make
 # install gcc for massdns
 sudo apt install gcc
 
-# install snap 
+# install snap for go/amass
 sudo apt install snapd
 sudo systemctl start snapd
 sudo systemctl enable snapd
@@ -36,7 +36,7 @@ echo "PATH=$PATH:/snap/bin" >> ~/.bashrc
 source ~/.bashrc
 sudo snap refresh
 
-#install go
+#install go for subfinder
 sudo snap install --classic go
 
 echo -e "\e[102m[+] Installing amass...\e[49m"
