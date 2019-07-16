@@ -26,8 +26,9 @@ sudo apt install make
 # install gcc for massdns
 sudo apt install gcc
 
-# Naje syre setup tools are up to date
+# Make setup tools are up to date for EyeWitness
 pip install --upgrade setuptools
+pip install wheel
 
 # install snap for go/amass
 sudo apt install snapd
@@ -81,6 +82,8 @@ clear
 echo -e "\e[1msubdomagic by gelosecurity.com\e[22m"
 echo -e ""
 echo -e "\e[92m[[*] Installed nmap"
+echo -e "[*] Installed setuptools"
+echo -e "[*] Installed wheel"
 echo -e "[*] Installed make"
 echo -e "[*] Installed gcc"
 echo -e "[*] Installed snap"
@@ -90,5 +93,5 @@ echo -e "[*] Installed subfinder"
 echo -e "[*] Installed massdns"
 echo -e "[*] Installed EyeWitness"
 echo -e ""
-echo -e "\e[1mSetup complete!"
+echo -e "\e[1mSetup complete![22m"
 
