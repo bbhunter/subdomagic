@@ -8,7 +8,7 @@ This Kali Linux/Ubuntu script is intended to simplify the process of subdomain e
 
 
 ### Setup
-1. `git clone https://github.com/gelosecurity/subdomagic` into your `/opt` directory **(MUST BE IN OPT!)**
+1. `git clone https://github.com/gelosecurity/subdomagic` 
 1. Navigate into the setup directory
 2. Run the `setup.sh` script
 
