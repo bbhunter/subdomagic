@@ -1,6 +1,6 @@
 subdomagic
 ======
-This Kali Linux script is intended to simplify the process of subdomain enumeration. Think of it as a "press this button and have it do all the things for subdomain web enumeration". In particular, it's looking to:
+This Kali Linux/Ubuntu script is intended to simplify the process of subdomain enumeration. Think of it as a "press this button and have it do all the things for subdomain web enumeration". In particular, it's looking to:
 
 1. Enumerate and consolidate subdomains from multiple sources using multiple tools.
 2. Conduct scans for web servers hosted on common ports. 
